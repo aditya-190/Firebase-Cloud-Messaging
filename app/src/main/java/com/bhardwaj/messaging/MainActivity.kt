@@ -8,6 +8,7 @@ import android.content.Intent
 import android.graphics.BitmapFactory
 import android.os.Build
 import android.os.Bundle
+import android.widget.RemoteViews
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
@@ -44,20 +45,31 @@ class MainActivity : AppCompatActivity() {
 
             val largeIconBitmap = BitmapFactory.decodeResource(resources, R.drawable.icon_cookies)
 
+            val notificationLayout = RemoteViews(packageName, R.layout.notification_small)
+            val notificationLayoutExpanded = RemoteViews(packageName, R.layout.notification_large)
+            notificationLayoutExpanded.setImageViewResource(R.id.ivCookies, R.drawable.icon_cookies)
+            notificationLayoutExpanded.setTextViewText(
+                R.id.tvBoughtCookies,
+                "You have Bought $numberOfCookies cookies!"
+            )
+
             val builder = NotificationCompat.Builder(mContext, CHANNEL_ID_1)
                 .setSmallIcon(R.drawable.icon_message)
+                .setStyle(NotificationCompat.DecoratedCustomViewStyle())
+                .setCustomContentView(notificationLayout)
+                .setCustomBigContentView(notificationLayoutExpanded)
                 .setContentTitle("Cookies")
                 .setContentText("You got $numberOfCookies Cookies")
                 .setContentIntent(pendingIntent)
                 .setAutoCancel(true)
-                .setLargeIcon(largeIconBitmap)
-                .setStyle(
-                    NotificationCompat.BigPictureStyle()
-                        .bigPicture(largeIconBitmap)
-                        .bigLargeIcon(null)
-                )
-                .addAction(R.mipmap.ic_launcher, "Option 1", pendingIntent)
-                .addAction(R.mipmap.ic_launcher, "Option 2", pendingIntent)
+//                .setLargeIcon(largeIconBitmap)
+//                .setStyle(
+//                    NotificationCompat.BigPictureStyle()
+//                        .bigPicture(largeIconBitmap)
+//                        .bigLargeIcon(null)
+//                )
+//                .addAction(R.mipmap.ic_launcher, "Option 1", pendingIntent)
+//                .addAction(R.mipmap.ic_launcher, "Option 2", pendingIntent)
                 .setColor(resources.getColor(R.color.purple_700, theme))
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                 .build()

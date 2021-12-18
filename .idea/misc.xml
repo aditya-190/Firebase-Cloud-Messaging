@@ -6,6 +6,8 @@
         <entry key="app/src/main/res/drawable/icon_favourite.xml" value="0.2111111111111111" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.20833333333333334" />
         <entry key="app/src/main/res/layout/activity_main2.xml" value="0.2578125" />
+        <entry key="app/src/main/res/layout/notification_large.xml" value="0.2578125" />
+        <entry key="app/src/main/res/layout/notification_small.xml" value="0.2578125" />
       </map>
     </option>
   </component>

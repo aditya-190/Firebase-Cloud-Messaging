@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "817052312096",
+    "project_id": "notification-test-0001",
+    "storage_bucket": "notification-test-0001.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:817052312096:android:3f6f2c63da0079edb21245",
+        "android_client_info": {
+          "package_name": "com.bhardwaj.messaging"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "817052312096-58vrlq6h6f3lfgujevrtcjiv9k53k04g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAX6j-mD-994DGIpJTqqAcIVhi2EFf5OAw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "817052312096-58vrlq6h6f3lfgujevrtcjiv9k53k04g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
