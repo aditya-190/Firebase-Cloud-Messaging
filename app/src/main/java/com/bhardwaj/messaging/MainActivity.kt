@@ -6,6 +6,8 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.graphics.BitmapFactory
+import android.graphics.Color
+import android.media.RingtoneManager
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -59,6 +61,9 @@ class MainActivity : AppCompatActivity() {
 //                "You have Bought $numberOfCookies cookies!"
 //            )
 
+            val defaultNotificationSound =
+                RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
+
             val builder = NotificationCompat.Builder(mContext, CHANNEL_ID_1)
                 .setSmallIcon(R.drawable.icon_message)
 //                .setStyle(NotificationCompat.DecoratedCustomViewStyle())
@@ -77,7 +82,10 @@ class MainActivity : AppCompatActivity() {
                 .addAction(R.mipmap.ic_launcher, "Option 1", pendingIntent)
                 .addAction(R.mipmap.ic_launcher, "Option 2", pendingIntent)
                 .setColor(resources.getColor(R.color.purple_700, theme))
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                .setSound(defaultNotificationSound)
+                .setLights(Color.GREEN, 500, 200)
+                .setVibrate(longArrayOf(0, 250, 250, 250))
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .build()
 
             val notificationManagerCompat = NotificationManagerCompat.from(mContext)
@@ -89,13 +97,15 @@ class MainActivity : AppCompatActivity() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val name1 = "My Channel Name - 1"
             val name2 = "My Channel Name - 2"
-            val importance = NotificationManager.IMPORTANCE_DEFAULT
+            val importance = NotificationManager.IMPORTANCE_HIGH
 
             val channel1 = NotificationChannel(CHANNEL_ID_1, name1, importance)
             channel1.description = "My Channel Description - 1"
+            channel1.vibrationPattern = longArrayOf(0, 250, 250, 250)
 
             val channel2 = NotificationChannel(CHANNEL_ID_2, name2, importance)
             channel2.description = "My Channel Description - 2"
+            channel2.vibrationPattern = longArrayOf(0, 250, 250, 250)
 
             val manager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
             manager.createNotificationChannel(channel1)
