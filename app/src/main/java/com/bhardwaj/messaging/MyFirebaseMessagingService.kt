@@ -22,6 +22,15 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
                 remoteMessage.notification!!.body.toString()
             )
         }
+
+        if (remoteMessage.data.isNotEmpty()) {
+            val data = remoteMessage.data
+            showNotification(
+                remoteMessage.notification!!.title.toString(),
+                remoteMessage.notification!!.body.toString(),
+                data["numberOfCookies"].toString()
+            )
+        }
     }
 
     override fun onNewToken(token: String) {
@@ -32,10 +41,12 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
     private fun showNotification(
         title: String,
         description: String,
+        numberOfCookies: String = "Nothing"
     ) {
         createNotificationChannel()
 
         val intent = Intent(this, MainActivity2::class.java)
+        intent.putExtra("cookies", numberOfCookies)
         val pendingIntent = PendingIntent.getActivity(
             this,
             0,
